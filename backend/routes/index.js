@@ -2,7 +2,6 @@ const express = require("express");
 const apiRouter = require("./api");
 const router = express.Router();
 
-router.use("/api", apiRouter);
 
 router.get("/api/csrf/restore", (req, res) => {
   const csrfToken = req.csrfToken();
@@ -33,5 +32,7 @@ if (process.env.NODE_ENV !== "production") {
     return res.status(201).json({});
   });
 }
+
+router.use("/api", apiRouter);
 
 module.exports = router;
